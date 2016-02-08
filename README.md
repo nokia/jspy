@@ -30,7 +30,3 @@ When started go into File \> Execute Command
 
 
 Execute Command: `javaws C:\path\to\file.jnlp`
-
-To run the application by it's java class remember to add it's jar's path (the path **musn't** contain spaces) to the `CLASSPATH` environment variable.
-
-Execute Command: `java Package.ClassName`
