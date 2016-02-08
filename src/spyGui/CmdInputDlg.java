@@ -77,9 +77,14 @@ public class CmdInputDlg  extends JDialog{
 						cmdList.addAll(Arrays.asList(cmdStr.trim().split("\\s+")));
 						ProcessBuilder pb = new ProcessBuilder(cmdList.toArray(new String[cmdList.size()]));
 						Map<String, String> env = pb.environment();
-						String currentdir = Paths.get("").toAbsolutePath().toString();
-						System.out.println("Current dir is "+currentdir);
-						env.put("JAVA_TOOL_OPTIONS", "-javaagent:\""+currentdir+fileSeparator+"JSpy.jar\"");
+						//String currentdir = Paths.get("").toAbsolutePath().toString();
+						//System.out.println("Current dir is "+currentdir);
+						String jarPath = spyAgent.AgentPreMain.class.getProtectionDomain()
+								.getCodeSource()
+								.getLocation()
+								.getPath()
+								.toString();
+						env.put("JAVA_TOOL_OPTIONS", "-javaagent:\""+jarPath+"\"");
 						//pb.directory(new File("C:\\Program Files\\COMclient\\bin\\"));
 						pb.redirectErrorStream(true);
 						try {
