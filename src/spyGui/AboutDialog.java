@@ -27,12 +27,15 @@ public class AboutDialog extends JDialog{
 		Container pane = this.getContentPane();
 		setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));
 
-		JLabel label1=new JLabel("JSpy for ROBOT Framework",JLabel.CENTER);		
+		JLabel label1=new JLabel("<html>"
+				+ "<center>JSpy for ROBOT Framework</center>"
+				+ "<center>Version 2.1.0</center>"
+				+ "</html>", JLabel.CENTER);
 		JLabel label2=new JLabel("Shows Component details in a easy Mouse move",JLabel.CENTER);		
 		JLabel label3=new JLabel("<html>"
-				+"By Arulraj Samuel<br>"
-				+ "Maintained by OSS Robot Team"
-				+"</html>",JLabel.CENTER);
+				+ "<center>By Arulraj Samuel</center>"
+				+ "<center>Maintained by Robot Team in Nokia</center>"
+				+ "</html>", JLabel.CENTER);
 		label1.setForeground(Color.RED);
 		label2.setForeground(Color.RED);
 		label3.setForeground(Color.RED);

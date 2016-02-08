@@ -30,7 +30,7 @@ public class SpyFrame extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	static public JScrollPane scrollPane;
-	JFrame frame = new JFrame("J Spy");
+	JFrame frame = new JFrame("JSpy");
 	public SpyGuiPane dispalyPane=new SpyGuiPane();
 	CmdInputDlg launchDlg=new CmdInputDlg();
 	public SpyFrame() {
