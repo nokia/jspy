@@ -12,6 +12,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -78,11 +80,14 @@ public class CmdInputDlg  extends JDialog{
 						Map<String, String> env = pb.environment();
 						//String currentdir = Paths.get("").toAbsolutePath().toString();
 						//System.out.println("Current dir is "+currentdir);
-						String jarPath = spyAgent.AgentPreMain.class.getProtectionDomain()
-								.getCodeSource()
-								.getLocation()
-								.getPath()
-								.toString();
+						URI jarUri = null;
+						try {
+							jarUri = spyAgent.AgentPreMain.class.getProtectionDomain()
+                                    .getCodeSource().getLocation().toURI();
+						} catch (URISyntaxException e) {
+							e.printStackTrace();
+						}
+						String jarPath = new java.io.File(jarUri).getPath();
 						env.put("JAVA_TOOL_OPTIONS", "-javaagent:\""+jarPath+"\"");
 						//pb.directory(new File("C:\\Program Files\\COMclient\\bin\\"));
 						pb.redirectErrorStream(true);
