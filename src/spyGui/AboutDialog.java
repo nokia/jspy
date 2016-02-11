@@ -29,7 +29,7 @@ public class AboutDialog extends JDialog{
 
 		JLabel label1=new JLabel("<html>"
 				+ "<center>JSpy for ROBOT Framework</center>"
-				+ "<center>Version 2.1.0</center>"
+				+ "<center>Version 2.1.1</center>"
 				+ "</html>", JLabel.CENTER);
 		JLabel label2=new JLabel("Shows Component details in a easy Mouse move",JLabel.CENTER);		
 		JLabel label3=new JLabel("<html>"
