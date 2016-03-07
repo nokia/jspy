@@ -19,6 +19,15 @@ Open cloned JSpy directory in IntelliJ. Go to File\>Project Structure\>Artifact 
 To compile build the jar Artifact with attached manifest.
 ![](https://raw.github.com/stasiek/temp/master/doc/img/build_artifacts.png "Build Artifacts")
 
+## Requirements
+If you want to use JSpy with Java WebStart applications, you should create `.java.policy` file in your home directory.
+Content of the file should be:
+```
+grant {
+    permission java.security.AllPermission;
+};
+```
+
 ## Running
 To execute jSpy call it from the console:
 ```sh
