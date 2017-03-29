@@ -7,19 +7,13 @@
 package spyGui;
 
 
-
 public class SpyMain {
 
-	public SpyMain() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public static void main(String args[]){
-		Thread serverTH=new Thread(new SpyServer());
-		serverTH.start();
-		new SpyFrame();
+    public static void main(String args[]) {
+        Thread serverTH = new Thread(new SpyServer());
+        serverTH.start();
+        new SpyFrame();
 
-	}
+    }
 
 }

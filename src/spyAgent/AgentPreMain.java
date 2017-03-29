@@ -12,20 +12,14 @@ import java.lang.instrument.Instrumentation;
 
 public class AgentPreMain {
 
-	public AgentPreMain() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-    public static void premain(String agentArguments, Instrumentation inst)
-    {
-		Communicator comm=new Communicator();
+    public static void premain(String agentArguments, Instrumentation inst) {
 
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		WinEventDispatchListner winDispatcher=new WinEventDispatchListner();
-		tk.addAWTEventListener(winDispatcher,AWTEvent.WINDOW_EVENT_MASK);
-		Communicator.writeToServer("Client connected");
+        new Communicator();
 
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        WinEventDispatchListner winDispatcher = new WinEventDispatchListner();
+        tk.addAWTEventListener(winDispatcher, AWTEvent.WINDOW_EVENT_MASK);
+        Communicator.writeToServer("Client connected");
 
-		
     }
 }

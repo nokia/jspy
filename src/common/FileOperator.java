@@ -10,39 +10,33 @@ package common;
 import java.io.*;
 
 public class FileOperator {
-	FileWriter fstream;
-	BufferedWriter out;
-	public FileOperator() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    FileWriter fstream;
+    BufferedWriter out;
 
-	public void writeFile(String fileName, String content){
-		try {
-			fstream = new FileWriter(fileName);
-			out = new BufferedWriter(fstream);
-			out.write(content);
-			out.close();
-			fstream.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
-	
-	public String readFile(String fileName){
-		String fileContent="";
-		try {
-			BufferedReader fileIn = new BufferedReader(new FileReader(fileName));
-			String line="";
-	        while (( line = fileIn.readLine()) != null){
-				fileContent +=line;
-			}
+    public void writeFile(String fileName, String content) {
+        try {
+            fstream = new FileWriter(fileName);
+            out = new BufferedWriter(fstream);
+            out.write(content);
+            out.close();
+            fstream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return fileContent;		
-	}
+    public String readFile(String fileName) {
+        String fileContent = "";
+        try {
+            BufferedReader fileIn = new BufferedReader(new FileReader(fileName));
+            String line = "";
+            while ((line = fileIn.readLine()) != null) {
+                fileContent += line;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fileContent;
+    }
 }
