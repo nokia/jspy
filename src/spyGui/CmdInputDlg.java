@@ -54,7 +54,6 @@ public class CmdInputDlg extends JDialog {
 
                     if (!cmdStr.trim().equals("")) {
 
-
                         System.out.println("Executing command :" + cmdStr);
                         List<String> cmdList = new ArrayList<String>();
                         cmdList.addAll(Arrays.asList(cmdStr.trim().split("\\s+")));

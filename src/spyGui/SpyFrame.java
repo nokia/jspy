@@ -67,7 +67,6 @@ public class SpyFrame extends JFrame {
                     launchDlg.setVisible(true);
                 }
 
-
             }
         };
         quit.addActionListener(menuAct);
@@ -87,6 +86,5 @@ public class SpyFrame extends JFrame {
         frame.setAlwaysOnTop(true);
         frame.setVisible(true);
     }
-
 
 }

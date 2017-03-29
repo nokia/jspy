@@ -68,7 +68,6 @@ public class ListComponent {
 
         }
 
-
     }
 
     public ListComponent(HierarchyMap compHieMap) {

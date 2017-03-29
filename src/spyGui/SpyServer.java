@@ -22,15 +22,16 @@ public class SpyServer implements Runnable {
         try {
             int port = 0;
             ServerSocket ss = new ServerSocket(port);
+
             port = ss.getLocalPort();
             writePortFile(port);
-            System.out.println("Server started...");
-            while (true) {
 
+            System.out.println("Server started...");
+
+            while (true) {
                 Socket soc = ss.accept();
                 Thread cliTh = new Thread(new SpyClientReader(soc));
                 cliTh.start();
-
             }
         } catch (IOException e) {
             System.out.println("I/O error " + e);
