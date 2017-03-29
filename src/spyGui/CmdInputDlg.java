@@ -60,15 +60,16 @@ public class CmdInputDlg extends JDialog {
                         ProcessBuilder pb = new ProcessBuilder(cmdList.toArray(new String[cmdList.size()]));
                         Map<String, String> env = pb.environment();
 
-                        URI jarUri = null;
+                        URI jSpyJarUri = null;
                         try {
-                            jarUri = spyAgent.AgentPreMain.class.getProtectionDomain()
+                            jSpyJarUri = spyAgent.AgentPreMain.class.getProtectionDomain()
                                     .getCodeSource().getLocation().toURI();
                         } catch (URISyntaxException e) {
                             e.printStackTrace();
                         }
-                        String jarPath = new java.io.File(jarUri).getPath();
-                        env.put("JAVA_TOOL_OPTIONS", "-javaagent:\"" + jarPath + "\"");
+                        String jSpyJarPath = new java.io.File(jSpyJarUri).getPath();
+
+                        env.put("JAVA_TOOL_OPTIONS", "-javaagent:\"" + jSpyJarPath + "\"" + "=" + Integer.toString(SpyServer.serverPort));
 
                         pb.redirectErrorStream(true);
                         try {

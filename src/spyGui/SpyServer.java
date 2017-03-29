@@ -10,22 +10,15 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import common.*;
-
 
 public class SpyServer implements Runnable {
-    private static String tmpDir = System.getProperty("java.io.tmpdir");
-    private static String fileSeparator = System.getProperty("file.separator");
 
+    public static int serverPort = 0;
 
     public void run() {
         try {
-            int port = 0;
-            ServerSocket ss = new ServerSocket(port);
-
-            port = ss.getLocalPort();
-            writePortFile(port);
-
+            ServerSocket ss = new ServerSocket(serverPort);
+            serverPort = ss.getLocalPort();
             System.out.println("Server started...");
 
             while (true) {
@@ -36,11 +29,5 @@ public class SpyServer implements Runnable {
         } catch (IOException e) {
             System.out.println("I/O error " + e);
         }
-    }
-
-    private void writePortFile(int port) {
-        String spyPortFile = (new StringBuilder()).append(tmpDir).append(fileSeparator).append("spyport.txt").toString();
-        FileOperator fp = new FileOperator();
-        fp.writeFile(spyPortFile, Integer.toString(port));
     }
 }

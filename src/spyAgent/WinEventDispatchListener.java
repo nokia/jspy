@@ -13,7 +13,7 @@ import java.awt.Window;
 import java.awt.event.AWTEventListener;
 import java.awt.event.WindowEvent;
 
-public class WinEventDispatchListner implements AWTEventListener {
+public class WinEventDispatchListener implements AWTEventListener {
     WindowTracker winTrack = new WindowTracker();
 
     public void eventDispatched(AWTEvent evt) {
