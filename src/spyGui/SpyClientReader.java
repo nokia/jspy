@@ -7,13 +7,17 @@
 package spyGui;
 
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 public class SpyClientReader implements Runnable {
     public Socket client;
 
     public SpyClientReader(Socket sock) {
+        super();
         client = sock;
     }
 
@@ -21,7 +25,7 @@ public class SpyClientReader implements Runnable {
         try {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
             out.write("connected\n");
-            SpyGuiPane.textpane.setText("Select Window and press \"CTRL+ALT+R\" to Re-Index");
+            SpyGuiPane.textPane.setText("Select Window and press \"CTRL+ALT+R\" to Re-Index");
             out.flush();
             BufferedReader in;
             InputStreamReader inStream = new InputStreamReader(client.getInputStream());
@@ -43,7 +47,6 @@ public class SpyClientReader implements Runnable {
                                 String name = splitText[4].substring(index + 1, splitText[4].length());
                                 SpyGuiPane.printText("Name- " + name + "\n");
                                 SpyGuiPane.printText("Class Name- " + className + "\n");
-
                                 SpyGuiPane.printText("-----------------------------------\n");
                             } else if (i == 5) {
                                 SpyGuiPane.printText("X: " + splitText[5] + "\n");
@@ -62,6 +65,7 @@ public class SpyClientReader implements Runnable {
             }
         } catch (Exception e) {
             System.out.println("ERROR3: " + e.getMessage());
+            SpyGuiPane.printText("Client Disconnected.\n");
         }
 
     }

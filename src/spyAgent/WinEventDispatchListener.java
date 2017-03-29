@@ -26,7 +26,7 @@ public class WinEventDispatchListener implements AWTEventListener {
             winTrack.activeWindow = win;
             win.addWindowFocusListener(winTrack);
             KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-            manager.addKeyEventDispatcher(new KeyboardListner(winTrack));
+            manager.addKeyEventDispatcher(new KeyboardListener(winTrack));
         }
     }
 
