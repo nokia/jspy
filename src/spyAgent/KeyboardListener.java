@@ -9,11 +9,11 @@ package spyAgent;
 import java.awt.KeyEventDispatcher;
 import java.awt.event.KeyEvent;
 
-public class KeyboardListner implements KeyEventDispatcher {
+public class KeyboardListener implements KeyEventDispatcher {
     WindowTracker winTrack;
     boolean altPressed, ctrlPressed = false;
 
-    public KeyboardListner(WindowTracker winTrack) {
+    public KeyboardListener(WindowTracker winTrack) {
         this.winTrack = winTrack;
     }
 

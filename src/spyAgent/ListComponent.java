@@ -36,7 +36,6 @@ public class ListComponent {
                     processComponent(subComponents[i]);
                     level--;
                 }
-
             }
         }
 
@@ -65,9 +64,7 @@ public class ListComponent {
             CompMouseListner mouseListner = new CompMouseListner(myHieMap.index, level, myHieMap.winTitle, componentClass, myHieMap.props);
 
             component.addMouseListener(mouseListner);
-
         }
-
     }
 
     public ListComponent(HierarchyMap compHieMap) {
@@ -89,6 +86,4 @@ public class ListComponent {
         else
             return componentString.substring(0, indexToStartOfDetails);
     }
-
-
 }

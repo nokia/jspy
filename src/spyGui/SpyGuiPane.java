@@ -6,11 +6,8 @@
 
 package spyGui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
 import javax.swing.*;
+import java.awt.*;
 
 
 public class SpyGuiPane extends JPanel {
@@ -19,30 +16,36 @@ public class SpyGuiPane extends JPanel {
 
     public static JTextArea textArea;
     public static JScrollPane scrollPane;
-    public static JTextPane textpane = new JTextPane();
+    public static JTextPane textPane = new JTextPane();
 
     public SpyGuiPane() {
 
-        textpane.setText("Launch example-File->Launch->javaws some.jnlp");
-        textpane.setBackground(new Color(255, 70, 50));
-        textpane.setEditable(false);
+        setLayout(new BorderLayout());
+
+        textPane.setText("Launch example-File->Launch->javaws some.jnlp");
+        textPane.setBackground(new Color(126, 192, 255));
+        textPane.setEditable(false);
         textArea = new JTextArea("JSpy Initialized...", 25, 25);
+
         scrollPane = new JScrollPane(textArea);
         scrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(300, 440));
+
         Font font = new Font("Ariel", Font.BOLD, 12);
         textArea.setFont(font);
         setPreferredSize(new Dimension(300, 440));
-        Color color = new Color(255, 200, 200);
-        textArea.setBackground(color);
-        textArea.setForeground(new Color(50, 50, 225));
+        Color color = Color.BLACK;
+
+        textArea.setForeground(color);
+        textArea.setBackground(new Color(170, 190, 220));
         textArea.setAutoscrolls(true);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
 
-        this.add(textpane);
-        this.add(scrollPane);
+        //scrollPane
+        this.add(textPane, BorderLayout.NORTH);
+        this.add(scrollPane, BorderLayout.CENTER);
     }
 
     public static void printText(String s) {
