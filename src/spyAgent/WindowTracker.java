@@ -10,17 +10,16 @@ import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-public class WindowTracker implements WindowFocusListener{
+public class WindowTracker implements WindowFocusListener {
 
-	public Window activeWindow;
-	
-	public void windowGainedFocus(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		activeWindow=(Window) arg0.getSource();
-	}
-	public void windowLostFocus(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+    public Window activeWindow;
+
+    public void windowGainedFocus(WindowEvent arg0) {
+        activeWindow = (Window) arg0.getSource();
+    }
+
+    public void windowLostFocus(WindowEvent arg0) {
+
+    }
 
 }

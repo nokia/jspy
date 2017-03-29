@@ -10,43 +10,42 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ProcessReader implements Runnable{
-	BufferedReader stdInput;
-	BufferedReader stdErr;
-	public ProcessReader(Process p) {
-		stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-		stdErr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-	}
+public class ProcessReader implements Runnable {
+    BufferedReader stdInput;
+    BufferedReader stdErr;
 
-	public void run() {
-		// TODO Auto-generated method stub
-		String s = null;
-		try {
-			while ((s = stdInput.readLine()) != null || (s = stdErr.readLine()) != null) {
-				System.out.println("CMD Out: "+s);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally{
-			System.out.println("Exiting process read.");
-			if(stdInput!=null){
-				try {
-					stdInput.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(stdErr!=null){
-				try {
-					stdErr.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
+    public ProcessReader(Process p) {
+        stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        stdErr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+    }
 
-	}
+    public void run() {
+
+        String s = null;
+        try {
+            while ((s = stdInput.readLine()) != null || (s = stdErr.readLine()) != null) {
+                System.out.println("CMD Out: " + s);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("Exiting process read.");
+            if (stdInput != null) {
+                try {
+                    stdInput.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stdErr != null) {
+                try {
+                    stdErr.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
 
 }
