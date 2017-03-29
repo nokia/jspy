@@ -6,19 +6,19 @@
 
 package spyAgent;
 
-import java.awt.AWTEvent;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.lang.instrument.Instrumentation;
 
 public class AgentPreMain {
 
     public static void premain(String agentArguments, Instrumentation inst) {
 
-        new Communicator();
+        Communicator.startCommunicator(Integer.parseInt(agentArguments));
+        WinEventDispatchListener winDispatcher = new WinEventDispatchListener();
 
         Toolkit tk = Toolkit.getDefaultToolkit();
-        WinEventDispatchListner winDispatcher = new WinEventDispatchListner();
         tk.addAWTEventListener(winDispatcher, AWTEvent.WINDOW_EVENT_MASK);
+
         Communicator.writeToServer("Client connected");
 
     }
