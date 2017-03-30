@@ -12,9 +12,11 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Window;
 import java.awt.event.AWTEventListener;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 public class WinEventDispatchListener implements AWTEventListener {
     WindowTracker winTrack = new WindowTracker();
+    private static ArrayList<KeyboardFocusManager> activeFocusManagers = new ArrayList<>();
 
     public void eventDispatched(AWTEvent evt) {
 
@@ -26,7 +28,10 @@ public class WinEventDispatchListener implements AWTEventListener {
             winTrack.activeWindow = win;
             win.addWindowFocusListener(winTrack);
             KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-            manager.addKeyEventDispatcher(new KeyboardListener(winTrack));
+            if (!activeFocusManagers.contains(manager)) {
+                manager.addKeyEventDispatcher(new KeyboardListener(winTrack));
+                activeFocusManagers.add(manager);
+            }
         }
     }
 

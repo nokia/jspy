@@ -17,7 +17,6 @@ public class SpyClientReader implements Runnable {
     public Socket client;
 
     public SpyClientReader(Socket sock) {
-        super();
         client = sock;
     }
 

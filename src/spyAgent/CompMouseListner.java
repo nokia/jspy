@@ -22,6 +22,8 @@ public class CompMouseListner implements MouseListener {
     String compProps = "";
 
     static boolean flag = false;
+    static boolean setActive = true;
+
 
     public CompMouseListner(String index, int compHierarchy, String title, String objType, String srcCompProps) {
         myIndex = index;
@@ -32,6 +34,9 @@ public class CompMouseListner implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent arg0) {
+        if (!setActive) {
+            return;
+        }
 
         Component comp = arg0.getComponent();
         if (comp instanceof JTabbedPane) {
@@ -61,10 +66,11 @@ public class CompMouseListner implements MouseListener {
     }
 
     public void mouseEntered(MouseEvent arg0) {
-        if (!flag) {
+        if (!flag && setActive) {
             try {
                 int index = compProps.indexOf("[");
                 String name = compProps.substring(index + 1, compProps.indexOf(','));
+                KeyboardListener.highlightedComponentName = name;
                 JComponent comp = (JComponent) arg0.getComponent();
                 Communicator.writeToServer("Window Title - " + winTitle + ",Index - " + myIndex + ",Instance Of - " + classType + ",Comp. Hierarchy - " + compHierarchy + "," + compProps);
                 highlightedComponentColor = comp.getBackground();

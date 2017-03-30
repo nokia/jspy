@@ -49,10 +49,13 @@ public class SpyFrame extends JFrame {
         helpMenu.setMnemonic(KeyEvent.VK_H);
         JMenuItem about = new JMenuItem("About");
         about.setMnemonic(KeyEvent.VK_A);
+        JMenuItem shortcuts = new JMenuItem("Shortcuts");
+        shortcuts.setMnemonic(KeyEvent.VK_S);
 
         fileMenu.add(launch);
         fileMenu.add(quit);
         helpMenu.add(about);
+        helpMenu.add(shortcuts);
 
         ActionListener menuAct = new ActionListener() {
             @Override
@@ -67,6 +70,8 @@ public class SpyFrame extends JFrame {
                     launchDlg.setLocationRelativeTo(SpyFrame.this);
                     launchDlg.setAlwaysOnTop(true);
                     launchDlg.setVisible(true);
+                } else if (arg0.getActionCommand().equals("Shortcuts")) {
+                    new ShortcutsDialog(SpyFrame.this);
                 }
 
             }
@@ -75,6 +80,7 @@ public class SpyFrame extends JFrame {
         quit.addActionListener(menuAct);
         about.addActionListener(menuAct);
         launch.addActionListener(menuAct);
+        shortcuts.addActionListener(menuAct);
 
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
