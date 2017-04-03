@@ -9,6 +9,7 @@ public class CommandComboBox extends JComboBox {
     private ArrayList<String> commands;
 
     public CommandComboBox() {
+        setRenderer(new ComboToolTipRenderer());
         commands = Utilities.getCommandHistory();
         setItemsInCombo(commands);
     }
