@@ -28,7 +28,7 @@ public class AboutDialog extends JDialog {
 
         JLabel label1 = new JLabel("<html>"
                 + "<center>JSpy for ROBOT Framework</center>"
-                + "<center>Version 2.1.1</center>"
+                + "<center>Version 3.0.0</center>"
                 + "</html>", JLabel.CENTER);
         JLabel label2 = new JLabel("Shows component details with an easy mouse move", JLabel.CENTER);
         JLabel label3 = new JLabel("<html>"
@@ -36,9 +36,9 @@ public class AboutDialog extends JDialog {
                 + "<center>Maintained by Robot Team in Nokia</center>"
                 + "</html>", JLabel.CENTER);
 
-        label1.setForeground(Color.RED);
-        label2.setForeground(Color.RED);
-        label3.setForeground(Color.RED);
+        label1.setForeground(Color.BLUE);
+        label2.setForeground(Color.BLUE);
+        label3.setForeground(Color.BLUE);
 
         JLabel dumm1 = new JLabel("-------------------------", JLabel.CENTER);
         JLabel dumm2 = new JLabel("-----------------------", JLabel.CENTER);
