@@ -71,7 +71,7 @@ public class CompMouseListner implements MouseListener {
                 int index = compProps.indexOf("[");
                 String name = compProps.substring(index + 1, compProps.indexOf(','));
                 KeyboardListener.highlightedComponentName = name;
-                JComponent comp = (JComponent) arg0.getComponent();
+                Component comp = arg0.getComponent();
                 Communicator.writeToServer("Window Title - " + winTitle + ",Index - " + myIndex + ",Instance Of - " + classType + ",Comp. Hierarchy - " + compHierarchy + "," + compProps);
                 highlightedComponentColor = comp.getBackground();
                 comp.setBackground(new Color(90, 100, 210));
@@ -85,7 +85,7 @@ public class CompMouseListner implements MouseListener {
     public void mouseExited(MouseEvent arg0) {
         if (flag) {
             try {
-                JComponent comp = (JComponent) arg0.getComponent();
+                Component comp = arg0.getComponent();
                 comp.setBackground(highlightedComponentColor);
                 flag = false;
             } catch (Exception e) {
