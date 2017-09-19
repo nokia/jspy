@@ -55,10 +55,12 @@ public class SpyClientReader implements Runnable {
                                 SpyGuiPane.printText("Size: " + splitText[7] + "\n");
                             } else {
                                 String temp = splitText[i].replace("[", "\n");
-                                temp = temp.replace("]", "\n");
-                                // skip empty properties (empty properties end with "=" and the last property, if it's empty, with "\n")
+                                temp = temp.replace("]", "");
+                                // skip empty properties
+                                // empty properties end with "="
                                 String tempLastCharacter = temp.substring(temp.length() - 1, temp.length());
-                                if ((!tempLastCharacter.equals("=")) && (!tempLastCharacter.equals("\n")))
+                                String tempBeforeLastCharacter = temp.substring(temp.length() - 2, temp.length() - 1);
+                                if ((!tempLastCharacter.equals("=")))
                                     SpyGuiPane.printText(temp + "\n");
                             }
                         }
