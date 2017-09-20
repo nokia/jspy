@@ -1,6 +1,6 @@
 # JSpy
 **JSpy** is a tool that displays the component properties of any java Swing application in the simplest way. To automate Swing applications, You generally need to venture into the application's sources to retrieve the component's properties. That's very time consuming and frustrating or even impossible. Using JSpy all You need to do to get the component's properties is to hover the coursor over the component.
-![](https://raw.githubusercontent.com/nokia/jspy/master/doc/img/jspy_big.png "JSpy Big")
+![](https://raw.githubusercontent.com/nokia/jspy/master/doc/img/jspy_big.PNG "JSpy Big")
 
 ## Dependencies
 **JSpy** is operating system independent — it just needs Java 6 or newer.
