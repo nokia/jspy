@@ -17,8 +17,8 @@ public class SpyGuiPane extends JPanel {
     public static JTextArea textArea;
     public static JScrollPane scrollPane;
     public static JTextPane textPane = new JTextPane();
-//    public static JTable table;
-//    private static DefaultTableModel tableModel;
+    public static JTable table;
+    private static DefaultTableModel tableModel;
 
     public SpyGuiPane() {
 
@@ -29,21 +29,28 @@ public class SpyGuiPane extends JPanel {
         textPane.setEditable(false);
         textArea = new JTextArea("JSpy Initialized...", 25, 25);
 
-//        tableModel = new DefaultTableModel();
-//        tableModel.addColumn("Name");
-//        tableModel.addColumn("Value");
-//        table = new JTable(tableModel);
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("Name");
+        tableModel.addColumn("Value");
+        table = new JTable(tableModel) {
+            @Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                Component c = super.prepareRenderer(renderer, row, column);
+                c.setBackground(row % 2 == 0 ? new Color(170, 190, 220) : Color.WHITE);
+                return c;
+            }
+        };
 
         scrollPane = new JScrollPane(textArea);
-//        scrollPane = new JScrollPane();
-//        scrollPane.getViewport().add(table);
+        scrollPane = new JScrollPane();
+        scrollPane.getViewport().add(table);
         scrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(300, 440));
 
         Font font = new Font("Ariel", Font.BOLD, 12);
         textArea.setFont(font);
-//        table.setFont(font);
+        table.setFont(font);
         setPreferredSize(new Dimension(300, 440));
         Color color = Color.BLACK;
 
@@ -53,9 +60,8 @@ public class SpyGuiPane extends JPanel {
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
 
-//        table.setForeground(color);
-//        table.setBackground(new Color(170, 190, 220));
-//        table.setAutoscrolls(true);
+        table.setForeground(color);
+        table.setAutoscrolls(true);
 
         //scrollPane
         this.add(textPane, BorderLayout.NORTH);
@@ -64,14 +70,12 @@ public class SpyGuiPane extends JPanel {
 
     public static void printText(String s) {
         if (s.equals("Clear")) {
-            textArea.setText("");
-//            tableModel.setRowCount(1);
+            tableModel.setRowCount(0);
         } else {
-//            String splitText[] = s.split("=");
-//            tableModel.addRow(splitText);
-            textArea.append(s);
+            String splitText[] = s.split("[=:-]");
+            tableModel.addRow(splitText);
         }
-//        table.setModel(tableModel);
+        table.setModel(tableModel);
         scrollPane.validate();
     }
 

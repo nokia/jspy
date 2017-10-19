@@ -46,7 +46,7 @@ public class SpyClientReader implements Runnable {
                                 String name = splitText[4].substring(index + 1, splitText[4].length());
                                 SpyGuiPane.printText("Name- " + name + "\n");
                                 SpyGuiPane.printText("Class Name- " + className + "\n");
-                                SpyGuiPane.printText("-----------------------------------\n");
+                                //SpyGuiPane.printText("-----------------------------------\n");
                             } else if (i == 5) {
                                 SpyGuiPane.printText("X: " + splitText[5] + "\n");
                             } else if (i == 6) {
