@@ -25,18 +25,23 @@ public class SpyGuiPane extends JPanel {
         setLayout(new BorderLayout());
 
         textPane.setText("Launch example-File->Launch->javaws some.jnlp");
-        textPane.setBackground(new Color(126, 192, 255));
+        textPane.setBackground(new Color(100,149,237));
         textPane.setEditable(false);
         textArea = new JTextArea("JSpy Initialized...", 25, 25);
 
-        tableModel = new DefaultTableModel();
+        tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         tableModel.addColumn("Name");
         tableModel.addColumn("Value");
         table = new JTable(tableModel) {
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component c = super.prepareRenderer(renderer, row, column);
-                c.setBackground(row % 2 == 0 ? new Color(170, 190, 220) : Color.WHITE);
+                c.setBackground(row % 2 == 0 ? new Color(176, 196, 222) : new Color(230, 230, 250));
                 return c;
             }
         };
@@ -66,17 +71,28 @@ public class SpyGuiPane extends JPanel {
         //scrollPane
         this.add(textPane, BorderLayout.NORTH);
         this.add(scrollPane, BorderLayout.CENTER);
+
     }
 
     public static void printText(String s) {
+        table.setVisible(false);
         if (s.equals("Clear")) {
             tableModel.setRowCount(0);
+        } else if(s.equals("Client Connected")) {
+            table.setVisible(false);
+            textArea.append("s");
+        } else if(s.equals("Finishing Indexing Components")) {
+            table.setVisible(true);
+        } else if(s.equals("Client Disconnected")) {
+            table.setVisible(false);
+            textArea.append("s");
         } else {
+            table.setVisible(true);
             String splitText[] = s.split("[=:-]");
             tableModel.addRow(splitText);
         }
-        table.setModel(tableModel);
         scrollPane.validate();
+        table.setModel(tableModel);
     }
 
 }
