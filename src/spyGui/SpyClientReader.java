@@ -68,7 +68,7 @@ public class SpyClientReader implements Runnable {
             }
         } catch (Exception e) {
             System.out.println("ERROR3: " + e.getMessage());
-            SpyGuiPane.printText("Client Disconnected.\n");
+            SpyGuiPane.printText("Client Disconnected.");
         }
 
     }

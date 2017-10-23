@@ -14,9 +14,9 @@ public class SpyGuiPane extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    public static JTextArea textArea;
     public static JScrollPane scrollPane;
     public static JTextPane textPane = new JTextPane();
+    public static JTextPane southTextPane = new JTextPane();
     public static JTable table;
     private static DefaultTableModel tableModel;
 
@@ -27,7 +27,10 @@ public class SpyGuiPane extends JPanel {
         textPane.setText("Launch example-File->Launch->javaws some.jnlp");
         textPane.setBackground(new Color(100,149,237));
         textPane.setEditable(false);
-        textArea = new JTextArea("JSpy Initialized...", 25, 25);
+
+        southTextPane.setText("JSpy Initialized...");
+        southTextPane.setBackground(new Color(100,149,237));
+        southTextPane.setEditable(false);
 
         tableModel = new DefaultTableModel() {
             @Override
@@ -37,7 +40,7 @@ public class SpyGuiPane extends JPanel {
         };
         tableModel.addColumn("Name");
         tableModel.addColumn("Value");
-        table = new JTable(tableModel) {
+        table = new JTable() {
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component c = super.prepareRenderer(renderer, row, column);
@@ -46,50 +49,47 @@ public class SpyGuiPane extends JPanel {
             }
         };
 
-        scrollPane = new JScrollPane(textArea);
         scrollPane = new JScrollPane();
         scrollPane.getViewport().add(table);
         scrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(300, 440));
 
-        Font font = new Font("Ariel", Font.BOLD, 12);
-        textArea.setFont(font);
-        table.setFont(font);
+        Font dataFont = new Font("Ariel", Font.BOLD, 12);
+        table.setFont(dataFont);
+
+        Font textFont = new Font("Ariel", Font.ITALIC, 12);
+        textPane.setFont(textFont);
+        southTextPane.setFont(textFont);
+
         setPreferredSize(new Dimension(300, 440));
         Color color = Color.BLACK;
-
-        textArea.setForeground(color);
-        textArea.setBackground(new Color(170, 190, 220));
-        textArea.setAutoscrolls(true);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
 
         table.setForeground(color);
         table.setAutoscrolls(true);
 
         //scrollPane
         this.add(textPane, BorderLayout.NORTH);
+        this.add(southTextPane, BorderLayout.SOUTH);
         this.add(scrollPane, BorderLayout.CENTER);
 
     }
 
     public static void printText(String s) {
-        table.setVisible(false);
         if (s.equals("Clear")) {
+            southTextPane.setText("");
             tableModel.setRowCount(0);
-        } else if(s.equals("Client Connected")) {
-            table.setVisible(false);
-            textArea.append("s");
-        } else if(s.equals("Finishing Indexing Components")) {
-            table.setVisible(true);
-        } else if(s.equals("Client Disconnected")) {
-            table.setVisible(false);
-            textArea.append("s");
         } else {
-            table.setVisible(true);
-            String splitText[] = s.split("[=:-]");
-            tableModel.addRow(splitText);
+            if(s.contains("=") || s.contains(":") || s.contains("-")) {
+                String splitText[] = s.split("[=:-]");
+                tableModel.addRow(splitText);
+            }
+            else{
+                String splitText[] = s.split("\n");
+                southTextPane.setText(splitText[0]);
+                if(s.contains("Client Disconnected."))
+                    tableModel.setRowCount(0);
+            }
         }
         scrollPane.validate();
         table.setModel(tableModel);
