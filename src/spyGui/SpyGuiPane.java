@@ -79,17 +79,17 @@ public class SpyGuiPane extends JPanel {
         if (s.equals("Clear")) {
             southTextPane.setText("");
             tableModel.setRowCount(0);
-        } else {
-            if (s.contains("=") || s.contains(":") || s.contains("-")) {
-                String splitText[] = s.split("[=:-]");
-                tableModel.addRow(splitText);
-            } else {
-                String splitText[] = s.split("\n");
-                southTextPane.setText(splitText[0]);
-                if (s.contains("Client Disconnected."))
-                    tableModel.setRowCount(0);
-            }
         }
+        if (s.contains("=") || s.contains(":") || s.contains("-")) {
+            String splitText[] = s.split("[=:-]");
+            tableModel.addRow(splitText);
+        } else {
+            String splitText[] = s.split("\n");
+            southTextPane.setText(splitText[0]);
+        }
+        if (s.contains("Client Disconnected."))
+            tableModel.setRowCount(0);
+
         scrollPane.validate();
         table.setModel(tableModel);
     }
