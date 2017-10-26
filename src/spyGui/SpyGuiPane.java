@@ -15,7 +15,7 @@ public class SpyGuiPane extends JPanel {
     private static final long serialVersionUID = 1L;
 
     public static JScrollPane scrollPane;
-    public static JTextPane textPane = new JTextPane();
+    public static JTextPane northTextPane = new JTextPane();
     public static JTextPane southTextPane = new JTextPane();
     public static JTable table;
     private static DefaultTableModel tableModel;
@@ -24,12 +24,12 @@ public class SpyGuiPane extends JPanel {
 
         setLayout(new BorderLayout());
 
-        textPane.setText("Launch example-File->Launch->javaws some.jnlp");
-        textPane.setBackground(new Color(100,149,237));
-        textPane.setEditable(false);
+        northTextPane.setText("Launch example-File->Launch->javaws some.jnlp");
+        northTextPane.setBackground(new Color(100, 149, 237));
+        northTextPane.setEditable(false);
 
         southTextPane.setText("JSpy Initialized...");
-        southTextPane.setBackground(new Color(100,149,237));
+        southTextPane.setBackground(new Color(100, 149, 237));
         southTextPane.setEditable(false);
 
         tableModel = new DefaultTableModel() {
@@ -59,7 +59,7 @@ public class SpyGuiPane extends JPanel {
         table.setFont(dataFont);
 
         Font textFont = new Font("Ariel", Font.ITALIC, 12);
-        textPane.setFont(textFont);
+        northTextPane.setFont(textFont);
         southTextPane.setFont(textFont);
 
         setPreferredSize(new Dimension(300, 440));
@@ -69,7 +69,7 @@ public class SpyGuiPane extends JPanel {
         table.setAutoscrolls(true);
 
         //scrollPane
-        this.add(textPane, BorderLayout.NORTH);
+        this.add(northTextPane, BorderLayout.NORTH);
         this.add(southTextPane, BorderLayout.SOUTH);
         this.add(scrollPane, BorderLayout.CENTER);
 
@@ -80,14 +80,13 @@ public class SpyGuiPane extends JPanel {
             southTextPane.setText("");
             tableModel.setRowCount(0);
         } else {
-            if(s.contains("=") || s.contains(":") || s.contains("-")) {
+            if (s.contains("=") || s.contains(":") || s.contains("-")) {
                 String splitText[] = s.split("[=:-]");
                 tableModel.addRow(splitText);
-            }
-            else{
+            } else {
                 String splitText[] = s.split("\n");
                 southTextPane.setText(splitText[0]);
-                if(s.contains("Client Disconnected."))
+                if (s.contains("Client Disconnected."))
                     tableModel.setRowCount(0);
             }
         }
