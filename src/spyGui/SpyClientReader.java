@@ -24,7 +24,7 @@ public class SpyClientReader implements Runnable {
         try {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
             out.write("connected\n");
-            SpyGuiPane.northTextPane.setText("Select Window and press \"CTRL+ALT+R\" to Re-Index");
+            SpyGuiPane.topTextPane.setText("Select Window and press \"CTRL+ALT+R\" to Re-Index");
             out.flush();
             BufferedReader in;
             InputStreamReader inStream = new InputStreamReader(client.getInputStream());
