@@ -24,7 +24,7 @@ public class SpyClientReader implements Runnable {
         try {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
             out.write("connected\n");
-            SpyGuiPane.textPane.setText("Select Window and press \"CTRL+ALT+R\" to Re-Index");
+            SpyGuiPane.topTextPane.setText("Select Window and press \"CTRL+ALT+R\" to Re-Index");
             out.flush();
             BufferedReader in;
             InputStreamReader inStream = new InputStreamReader(client.getInputStream());
@@ -44,15 +44,14 @@ public class SpyClientReader implements Runnable {
                                 int index = splitText[4].indexOf("[");
                                 String className = splitText[4].substring(0, index + 1).replace("[", "");
                                 String name = splitText[4].substring(index + 1, splitText[4].length());
-                                SpyGuiPane.printText("Name- " + name + "\n");
-                                SpyGuiPane.printText("Class Name- " + className + "\n");
-                                SpyGuiPane.printText("-----------------------------------\n");
+                                SpyGuiPane.printText("Name- " + name);
+                                SpyGuiPane.printText("Class Name- " + className);
                             } else if (i == 5) {
-                                SpyGuiPane.printText("X: " + splitText[5] + "\n");
+                                SpyGuiPane.printText("X: " + splitText[5]);
                             } else if (i == 6) {
-                                SpyGuiPane.printText("Y: " + splitText[6] + "\n");
+                                SpyGuiPane.printText("Y: " + splitText[6]);
                             } else if (i == 7) {
-                                SpyGuiPane.printText("Size: " + splitText[7] + "\n");
+                                SpyGuiPane.printText("Size: " + splitText[7]);
                             } else {
                                 String temp = splitText[i].replace("[", "\n");
                                 temp = temp.replace("]", "");
@@ -60,7 +59,7 @@ public class SpyClientReader implements Runnable {
                                 // empty properties end with "="
                                 String tempLastCharacter = temp.substring(temp.length() - 1, temp.length());
                                 if ((!tempLastCharacter.equals("=")))
-                                    SpyGuiPane.printText(temp + "\n");
+                                    SpyGuiPane.printText(temp );
                             }
                         }
                     }
@@ -68,7 +67,7 @@ public class SpyClientReader implements Runnable {
             }
         } catch (Exception e) {
             System.out.println("ERROR3: " + e.getMessage());
-            SpyGuiPane.printText("Client Disconnected.\n");
+            SpyGuiPane.printText("Client Disconnected.");
         }
 
     }
