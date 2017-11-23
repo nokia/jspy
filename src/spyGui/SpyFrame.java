@@ -34,7 +34,6 @@ public class SpyFrame extends JFrame {
 
         setLocationRelativeTo(null);
         pack();
-        setAlwaysOnTop(true);
         setVisible(true);
     }
 
@@ -45,6 +44,10 @@ public class SpyFrame extends JFrame {
         launch.setMnemonic(KeyEvent.VK_L);
         JMenuItem quit = new JMenuItem("Quit");
         quit.setMnemonic(KeyEvent.VK_Q);
+        JMenu preferenceMenu = new JMenu("Preference");
+        preferenceMenu.setMnemonic(KeyEvent.VK_P);
+        JCheckBoxMenuItem alwaysOnTop = new JCheckBoxMenuItem("Always on top");
+        alwaysOnTop.setMnemonic(KeyEvent.VK_A);
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMnemonic(KeyEvent.VK_H);
         JMenuItem about = new JMenuItem("About");
@@ -54,6 +57,7 @@ public class SpyFrame extends JFrame {
 
         fileMenu.add(launch);
         fileMenu.add(quit);
+        preferenceMenu.add(alwaysOnTop);
         helpMenu.add(about);
         helpMenu.add(shortcuts);
 
@@ -72,8 +76,15 @@ public class SpyFrame extends JFrame {
                     launchDlg.setVisible(true);
                 } else if (arg0.getActionCommand().equals("Shortcuts")) {
                     new ShortcutsDialog(SpyFrame.this);
+                } else if (arg0.getActionCommand().equals("Always on top")) {
+                    if(alwaysOnTop.isSelected()) {
+                        alwaysOnTop.setSelected(true);
+                        setAlwaysOnTop(true);
+                    } else {
+                        alwaysOnTop.setSelected(false);
+                        setAlwaysOnTop(false);
+                    }
                 }
-
             }
         };
 
@@ -81,8 +92,10 @@ public class SpyFrame extends JFrame {
         about.addActionListener(menuAct);
         launch.addActionListener(menuAct);
         shortcuts.addActionListener(menuAct);
+        alwaysOnTop.addActionListener(menuAct);
 
         menuBar.add(fileMenu);
+        menuBar.add(preferenceMenu);
         menuBar.add(helpMenu);
     }
 
