@@ -33,6 +33,7 @@ public class SpyFrame extends JFrame {
         JFrame.setDefaultLookAndFeelDecorated(true);
 
         setLocationRelativeTo(null);
+        setAlwaysOnTop(true);
         pack();
         setVisible(true);
     }
@@ -48,6 +49,7 @@ public class SpyFrame extends JFrame {
         preferenceMenu.setMnemonic(KeyEvent.VK_P);
         JCheckBoxMenuItem alwaysOnTop = new JCheckBoxMenuItem("Always on top");
         alwaysOnTop.setMnemonic(KeyEvent.VK_A);
+        alwaysOnTop.setSelected(true);
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMnemonic(KeyEvent.VK_H);
         JMenuItem about = new JMenuItem("About");
