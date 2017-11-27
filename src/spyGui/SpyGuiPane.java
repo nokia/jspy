@@ -83,6 +83,9 @@ public class SpyGuiPane extends JPanel {
         if (s.contains("=") || s.contains(":") || s.contains("-")){
             return true;
         }
+        if(s.matches("\\d+(X\\d+)?(x\\d+)?")) {
+            return true;
+        }
         return false;
     }
 
@@ -93,13 +96,21 @@ public class SpyGuiPane extends JPanel {
         } else if (s.contains("Client Disconnected.")) {
             tableModel.setRowCount(0);
             bottomTextPane.setText(s);
+        }else if(s.equals("new line")){
+            tableModel.addRow(new Object[]{null,null});
         } else if (isProperty(s)) {
             String name_value[] = s.split("[=:-]");
-            tableModel.addRow(name_value);
+            if(name_value.length < 2){
+                String emptyFirst[] = {"", name_value[0]};
+                tableModel.addRow(emptyFirst);
+            } else {
+                tableModel.addRow(name_value);
+            }
         } else {
             String splitText[] = s.split("\n");
             bottomTextPane.setText(splitText[0]);
         }
+
 
         scrollPane.validate();
         table.setModel(tableModel);
