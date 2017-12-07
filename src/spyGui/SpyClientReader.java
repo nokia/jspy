@@ -53,13 +53,25 @@ public class SpyClientReader implements Runnable {
                             } else if (i == 7) {
                                 SpyGuiPane.printText("Size: " + splitText[7]);
                             } else {
-                                String temp = splitText[i].replace("[", "\n");
-                                temp = temp.replace("]", "");
-                                // skip empty properties
-                                // empty properties end with "="
-                                String tempLastCharacter = temp.substring(temp.length() - 1, temp.length());
-                                if ((!tempLastCharacter.equals("=")))
-                                    SpyGuiPane.printText(temp );
+                                String temporary = splitText[i].replace("[", "\n");
+                                String temp[] = temporary.split("\n");
+                                for(int j=0; j<temp.length; j++) {
+                                    // skip empty properties
+                                    // empty properties end with "="
+                                    String tempLastCharacter = temp[j].substring(temp[j].length() - 1, temp[j].length());
+                                    if ((!tempLastCharacter.equals("="))){
+                                        if(tempLastCharacter.equals("]")){
+                                            //properties without name
+                                            String lastTempCharacter =  temp[j].substring(temp[j].length() - 2, temp[j].length() -1);
+                                            if((!lastTempCharacter.equals("="))) {
+                                                SpyGuiPane.printText(temp[j].substring(0, temp[j].length() - 1));
+                                                SpyGuiPane.printText("new line");
+                                            }
+                                        }else {
+                                            SpyGuiPane.printText(temp[j]);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
