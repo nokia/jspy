@@ -55,15 +55,15 @@ public class SpyClientReader implements Runnable {
                             } else {
                                 String temporary = splitText[i].replace("[", "\n");
                                 String temp[] = temporary.split("\n");
-                                for(int j=0; j<temp.length; j++) {
+                                for (int j = 0; j < temp.length; j++) {
                                     // skip empty properties
                                     // empty properties end with "="
                                     String tempLastCharacter = temp[j].substring(temp[j].length() - 1, temp[j].length());
-                                    if ((!tempLastCharacter.equals("="))){
-                                        if(tempLastCharacter.equals("]")){
+                                    if ((!tempLastCharacter.equals("="))) {
+                                        if (tempLastCharacter.equals("]")) {
                                             //properties without name
-                                            String lastTempCharacter =  temp[j].substring(temp[j].length() - 2, temp[j].length() -1);
-                                            if((!lastTempCharacter.equals("="))) {
+                                            String tempBeforeLastCharacter = temp[j].substring(temp[j].length() - 2, temp[j].length() - 1);
+                                            if ((!tempBeforeLastCharacter.equals("="))) {
                                                 SpyGuiPane.printText(temp[j].substring(0, temp[j].length() - 1));
                                                 SpyGuiPane.printText("new line");
                                             }
