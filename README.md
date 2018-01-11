@@ -3,7 +3,7 @@
 ![](https://raw.githubusercontent.com/nokia/jspy/master/doc/img/jspy_big.png "JSpy Big")
 
 ## Dependencies
-**JSpy** is operating system independent — it just needs Java 6 or newer.
+**JSpy** is operating system independent — it just needs Java 8 or newer.
 
 ## Building from sources
 We’ll go with IntelliJ for compiling this
