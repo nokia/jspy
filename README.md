@@ -39,3 +39,8 @@ When started go into File \> Execute Command
 
 
 Execute Command: `javaws C:\path\to\file.jnlp`
+
+
+## License
+
+This project is licensed under the Apache-2.0 license - see the [LICENSE](https://github.com/nokia/jspy/blob/master/licence.txt).
